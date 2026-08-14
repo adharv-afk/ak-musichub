@@ -1,0 +1,915 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body {
+    background: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   APP
+========================= */
+
+.app {
+    display: flex;
+    min-height: calc(100vh - 90px);
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 230px;
+    background: #000;
+    padding: 25px;
+    flex-shrink: 0;
+}
+
+.sidebar h1 {
+    margin-bottom: 40px;
+}
+
+.sidebar nav a {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    padding: 12px 0;
+    transition: 0.2s;
+}
+
+.sidebar nav a:hover {
+    color: white;
+}
+
+.playlists {
+    margin-top: 40px;
+}
+
+.playlists h3 {
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.playlists p {
+    color: #aaa;
+    padding: 8px 0;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.playlists p:hover {
+    color: white;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    flex: 1;
+    padding: 30px;
+    padding-bottom: 120px;
+    overflow-y: auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+header h2 {
+    font-size: 28px;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+#search {
+    width: 270px;
+    padding: 13px 18px;
+
+    border-radius: 25px;
+
+    border: none;
+    outline: none;
+
+    font-size: 14px;
+
+    background: white;
+    color: #111;
+
+    transition: 0.2s;
+}
+
+#search:focus {
+    box-shadow: 0 0 0 2px #777;
+}
+
+
+/* =========================
+   SONG SECTION
+========================= */
+
+.songs {
+    display: flex;
+    gap: 25px;
+
+    margin-top: 20px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =========================
+   SONG CARD
+========================= */
+
+.song {
+    background: #181818;
+
+    padding: 18px;
+
+    width: 190px;
+
+    min-height: 270px;
+
+    border-radius: 10px;
+
+    position: relative;
+
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        box-shadow 0.2s;
+
+    overflow: hidden;
+}
+
+.song:hover {
+    background: #282828;
+
+    transform: translateY(-4px);
+}
+
+
+/* =========================
+   CURRENTLY PLAYING CARD
+========================= */
+
+.song.playing {
+    background: #242424;
+
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.15);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   COVER
+========================= */
+
+.cover {
+    width: 100%;
+
+    height: 140px;
+
+    background: #282828;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 50px;
+
+    border-radius: 8px;
+
+    margin-bottom: 15px;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+/* REAL IMAGE COVER */
+
+.cover img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =========================
+   PLAYING INDICATOR
+========================= */
+
+.song.playing .cover::after {
+
+    content: "▶";
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    font-size: 30px;
+
+    animation: pulse 1.5s infinite;
+
+}
+
+
+/* =========================
+   PULSE ANIMATION
+========================= */
+
+@keyframes pulse {
+
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+
+}
+
+
+/* =========================
+   SONG TITLE
+========================= */
+
+.song h3 {
+    font-size: 16px;
+
+    margin-bottom: 5px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    padding-right: 5px;
+}
+
+
+/* =========================
+   ARTIST
+========================= */
+
+.song p {
+    color: #888;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    padding-right: 5px;
+}
+
+
+/* =========================
+   PLAY BUTTON
+========================= */
+
+.song > button:not(.favorite-button):not(.playlist-button) {
+
+    position: absolute;
+
+    right: 15px;
+
+    bottom: 15px;
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    background: white;
+
+    color: black;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    transition: 0.2s;
+
+}
+
+.song > button:not(.favorite-button):not(.playlist-button):hover {
+
+    transform: scale(1.1);
+
+}
+
+
+/* =========================
+   FAVORITE BUTTON
+========================= */
+
+.favorite-button {
+
+    position: absolute;
+
+    right: 55px;
+
+    bottom: 15px;
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: 0.2s;
+
+}
+
+.favorite-button:hover {
+
+    transform: scale(1.2);
+
+}
+
+
+/* =========================
+   PLAYLIST BUTTON
+========================= */
+
+.playlist-button {
+
+    position: absolute;
+
+    right: 95px;
+
+    bottom: 15px;
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: 0.2s;
+
+}
+
+.playlist-button:hover {
+
+    transform: scale(1.2);
+
+}
+
+
+/* =========================
+   BOTTOM MUSIC PLAYER
+========================= */
+
+.player {
+
+    position: fixed;
+
+    bottom: 0;
+
+    left: 0;
+
+    right: 0;
+
+    height: 90px;
+
+    background: #181818;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 25px;
+
+    z-index: 100;
+
+    border-top: 1px solid #282828;
+}
+
+
+/* =========================
+   CURRENT SONG
+========================= */
+
+.current-song {
+
+    display: flex;
+
+    align-items: center;
+
+    width: 25%;
+
+    min-width: 220px;
+
+}
+
+
+/* =========================
+   SMALL COVER
+========================= */
+
+.small-cover {
+
+    width: 55px;
+
+    height: 55px;
+
+    background: #282828;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-right: 12px;
+
+    border-radius: 5px;
+
+    font-size: 25px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+}
+
+
+/* REAL PLAYER COVER */
+
+.small-cover img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+/* =========================
+   CURRENT SONG TEXT
+========================= */
+
+.current-song h4 {
+
+    margin-bottom: 4px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+.current-song p {
+
+    color: #888;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls {
+
+    width: 45%;
+
+    text-align: center;
+
+}
+
+
+/* =========================
+   CONTROL BUTTONS
+========================= */
+
+.controls button {
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 18px;
+
+    margin: 0 8px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+.controls button:hover {
+
+    transform: scale(1.15);
+
+}
+
+
+/* =========================
+   ACTIVE SHUFFLE / REPEAT
+========================= */
+
+.controls button.active {
+
+    color: #1db954;
+
+}
+
+
+/* =========================
+   TIME CONTAINER
+========================= */
+
+.time-container {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 5px;
+
+}
+
+
+/* =========================
+   TIME TEXT
+========================= */
+
+.time-container span {
+
+    color: #888;
+
+    font-size: 11px;
+
+    min-width: 35px;
+
+}
+
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.time-container input[type="range"] {
+
+    width: 80%;
+
+    margin-top: 0;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================
+   VOLUME
+========================= */
+
+.volume {
+
+    width: 20%;
+
+    text-align: right;
+
+    white-space: nowrap;
+
+}
+
+.volume input {
+
+    width: 80px;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================
+   RANGE INPUT
+========================= */
+
+input[type="range"] {
+
+    accent-color: white;
+
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.songs > p {
+
+    margin-top: 30px;
+
+    font-size: 16px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+
+        width: 180px;
+
+        padding: 20px;
+
+    }
+
+
+    .sidebar h1 {
+
+        font-size: 24px;
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .main {
+
+        padding: 20px;
+
+        padding-bottom: 120px;
+
+    }
+
+
+    header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+
+    }
+
+
+    header h2 {
+
+        font-size: 24px;
+
+    }
+
+
+    #search {
+
+        width: 100%;
+
+    }
+
+
+    .songs {
+
+        gap: 15px;
+
+    }
+
+
+    .song {
+
+        width: 160px;
+
+    }
+
+
+    .cover {
+
+        height: 120px;
+
+    }
+
+
+    .current-song {
+
+        width: 30%;
+
+        min-width: 150px;
+
+    }
+
+
+    .controls {
+
+        width: 50%;
+
+    }
+
+
+    .controls button {
+
+        margin: 0 3px;
+
+        font-size: 16px;
+
+    }
+
+
+    .volume {
+
+        display: none;
+
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    .sidebar {
+
+        width: 150px;
+
+        padding: 15px;
+
+    }
+
+
+    .sidebar h1 {
+
+        font-size: 20px;
+
+    }
+
+
+    .song {
+
+        width: 145px;
+
+    }
+
+
+    .cover {
+
+        height: 110px;
+
+    }
+
+
+    .current-song {
+
+        min-width: 120px;
+
+    }
+
+
+    .small-cover {
+
+        width: 45px;
+
+        height: 45px;
+
+    }
+
+
+    .current-song h4 {
+
+        font-size: 13px;
+
+    }
+
+
+    .current-song p {
+
+        font-size: 11px;
+
+    }
+
+
+    .time-container span {
+
+        font-size: 9px;
+
+        min-width: 28px;
+
+    }
+
+}

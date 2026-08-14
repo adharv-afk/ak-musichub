@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AK MusicHub</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <div class="app">
+
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <h1>🎧 AK MusicHub</h1>
+
+
+            <nav>
+
+                <a href="#">
+                    🏠 Home
+                </a>
+
+                <a href="#">
+                    🔍 Search
+                </a>
+
+                <a href="#">
+                    ❤️ Your Library
+                </a>
+
+            </nav>
+
+
+            <div class="playlists">
+
+                <h3>
+                    Your Playlists
+                </h3>
+
+
+                <p>
+                    🎵 My Playlist
+                </p>
+
+
+                <p>
+                    🔥 Favorites
+                </p>
+
+
+                <p>
+                    🌙 Chill
+                </p>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <main class="main">
+
+
+            <header>
+
+                <h2>
+                    Good Evening 👋
+                </h2>
+
+
+                <input
+                    type="text"
+                    placeholder="Search songs..."
+                    id="search"
+                >
+
+            </header>
+
+
+
+            <!-- =========================
+                 RECENTLY ADDED
+            ========================== -->
+
+            <section>
+
+                <h2>
+                    Recently Added
+                </h2>
+
+
+                <div
+                    class="songs"
+                    id="songList"
+                >
+
+                    <!-- Songs automatically
+                         appear here -->
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         MUSIC PLAYER
+    ========================== -->
+
+    <footer class="player">
+
+
+        <!-- CURRENT SONG -->
+
+        <div class="current-song">
+
+
+            <div class="small-cover">
+
+                🎵
+
+            </div>
+
+
+            <div>
+
+                <h4 id="currentTitle">
+
+                    Select a song
+
+                </h4>
+
+
+                <p id="currentArtist">
+
+                    AK MusicHub
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             PLAYER CONTROLS
+        ========================== -->
+
+        <div class="controls">
+
+
+            <div>
+
+
+                <!-- SHUFFLE -->
+
+                <button
+                    id="shuffleButton"
+                    title="Shuffle OFF"
+                >
+
+                    🔀
+
+                </button>
+
+
+                <!-- PREVIOUS -->
+
+                <button
+                    onclick="previousSong()"
+                    title="Previous"
+                >
+
+                    ⏮
+
+                </button>
+
+
+                <!-- PLAY -->
+
+                <button
+                    id="playButton"
+                    title="Play/Pause"
+                >
+
+                    ▶
+
+                </button>
+
+
+                <!-- NEXT -->
+
+                <button
+                    onclick="nextSong()"
+                    title="Next"
+                >
+
+                    ⏭
+
+                </button>
+
+
+                <!-- REPEAT -->
+
+                <button
+                    id="repeatButton"
+                    title="Repeat OFF"
+                >
+
+                    🔁
+
+                </button>
+
+            </div>
+
+
+
+            <!-- PROGRESS -->
+
+            <input
+                type="range"
+                value="0"
+                min="0"
+                max="100"
+                step="0.1"
+                id="progressBar"
+            >
+
+        </div>
+
+
+
+        <!-- =========================
+             VOLUME
+        ========================== -->
+
+        <div class="volume">
+
+            🔊
+
+            <input
+                type="range"
+                min="0"
+                max="100"
+                value="70"
+                id="volumeBar"
+            >
+
+        </div>
+
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script
+        src="script.js"
+    ></script>
+
+
+</body>
+
+</html>
